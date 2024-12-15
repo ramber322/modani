@@ -1,62 +1,169 @@
-.container {
+html, body {
+    height: 100%;
+    margin: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-}
-
-.pokecontainer {
-    width: 80%;
-    max-width: 600px; /* Limit width for larger screens */
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.header {
+    flex-direction: column;
+  }
+  
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-}
-
-.search-container {
+    padding: 10px;
+    background-color: #0F172A; /* Very dark blue */
+    color: white;
+  }
+  
+  .icon {
+    font-size: 24px; /* Adjust as needed */
+  }
+  
+  .icon3DOT {
+    height: 26px;
+    width: 26px;
+    color: white;
+    filter: invert(100%);
+  }
+  
+  main {
+    flex-grow: 1;
+    padding: 5px;
+    background-color: #1E293B; /* Darker gray-blue */
     display: flex;
+    flex-direction: column;
+    align-items: center; /* Center children horizontally */
+    overflow: hidden;
+  }
+  
+  footer {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-}
-
-.search-container input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.search-button {
-    background-color: #f0f0f0;
+    background-color: #0F172A; /* Very dark blue */
+    color: white;
+  }
+  
+  footer .icon {
+    font-size: 24px; /* Adjust as needed */
+  }
+  
+  @media (max-width: 600px) {
+    header {
+        flex-direction: row;
+    }
+  
+    footer {
+        align-items: center;
+        justify-content: center; /* Center items horizontally */
+        padding: 5px;
+    }
+  }
+  
+  .addlistbtn {
+    padding: 10px 20px;
+    background-color: #1E40AF; /* Medium dark blue */
+    color: white;
     border: none;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
+    margin-top: auto; /* Pushes the button to the bottom */
+    align-self: center; /* Center the button horizontally */
+  }
+  
+  .addlistbtn:hover {
+    background-color: #1E3A8A; /* Darker blue on hover */
+  }
+  
+  .list-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    height: 90%; /* Set height to 90% of the parent */
+    width: 100%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-bottom: 5px; /* Space above the button */
+    background-color: #1E293B; /* Darker gray-blue */
+  }
+  
+  .list-container::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: make scrollbar transparent */
+  }
+  
+  .listitem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
-    margin-left: 5px;
-    border-radius: 4px;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none; /* Hide by default */
+    background-color: #BFDBFE; /* Lighter blue */
+    border: 1px solid #60A5FA; /* Border color */
+  }
+  
+  .listitem.crossed-out {
+    color: rgba(255, 255, 255, 0.3); /* White text with 30% opacity */
+    background-color: #6B7280; /* Change background color */
+  }
+  
+  * {
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+  }
+  
+  .checkbox {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; /* Make it circular */
+    border: 2px solid #60A5FA; /* Border color */
+    background-color: transparent; /* Default background */
+    cursor: pointer;
+    position: relative; /* Position for the checkmark */
+    margin-right: 10px; /* Space between checkbox and text */
+  }
+  
+  .checkbox.checked {
+    background-color: #60A5FA; /* Change background when checked */
+  }
+  
+  .checkbox::after {
+    content: '';
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block; /* Show on hover */
-}
-
+    width: 30px; /* Adjust size of the icon */
+    height: 30px; /* Adjust size of the icon */
+    background: url('https://cdn-icons-png.freepik.com/512/5610/5610944.png') no-repeat center center; /* Checkmark icon */
+    background-size: contain; /* Ensure it fits within the circle */
+    opacity: 0; /* Hide by default */
+    transition: opacity 0.2s; /* Smooth transition */
+    left: -2px;
+    top: -2px;
+  }
+  
+  .checkbox.checked::after {
+    opacity: 1; /* Show the icon when checked */
+  }
+  
+  /* MODAL STYLE */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 50; /* Sit on top */
+    left: 5;
+    top: 0;
+    width: 110%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+  }
+  
+  .modal-content {
+    background-color: white;
+    margin: 15% auto; /* 15% from the top and centered horizontally */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Set your desired width */
+    max-width: 600px; /* Optional: Set a max width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add some shadow for better visibility */
+  }
+  
+  .delete-icon {
+    display: none; /* Hide delete icon by default */
+    margin-left: 10px; /* Space between name and delete icon */
+  }
