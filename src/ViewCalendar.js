@@ -19,12 +19,12 @@ function ViewCalendar() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
+          body: JSON.stringify({ event_id: eventId }), // Include the payload
         }
       );
   
       // Check for errors in the response
       if (!response.ok) {
-        // If response is not OK (e.g., 404 or 500), log the status code and response body
         const errorMessage = await response.text();
         console.error("Error response:", response.status, errorMessage);
         alert("Error registering for event. Please check the console.");
@@ -126,30 +126,34 @@ function ViewCalendar() {
   return (
     <>
     <Header/>
-    <main className="container mx-auto mt-8 px-4">
-      <section className="mt-8">
-        <div className="flex items-center justify-between mb-4">
-          <button onClick={handlePrevMonth} className="text-xl p-2 bg-gray-200 rounded hover:bg-gray-300">
-            ←
-          </button>
-          <h3 className="text-lg font-semibold">
-            {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
-          </h3>
-          <button onClick={handleNextMonth} className="text-xl p-2 bg-gray-200 rounded hover:bg-gray-300">
-            →
-          </button>
-        </div>
-        <div className="calendar-grid grid grid-cols-7 text-center">
-          <div className="font-bold">M</div>
-          <div className="font-bold">T</div>
-          <div className="font-bold">W</div>
-          <div className="font-bold">T</div>
-          <div className="font-bold">F</div>
-          <div className="font-bold">S</div>
-          <div className="font-bold">SU</div>
-        </div>
-        <div className="calendar-grid grid grid-cols-7 gap-2 mt-4">{renderCalendar()}</div>
-      </section>
+    <main className="container mx-auto mt-8 px-4 ">
+    <section className="mt-8">
+    <div className="flex items-center justify-between mb-4">
+      <button onClick={handlePrevMonth} className="text-xl p-2 bg-gray-200 rounded hover:bg-gray-300">
+        ←
+      </button>
+      <h3 className="text-lg font-semibold">
+        {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
+      </h3>
+      <button onClick={handleNextMonth} className="text-xl p-2 bg-gray-200 rounded hover:bg-gray-300">
+        →
+      </button>
+    </div>
+    
+    {/* Header Days of the Week */}
+    <div className="calendar-grid grid grid-cols-7 text-center mb-4">
+      <div className="font-bold">M</div>
+      <div className="font-bold">T</div>
+      <div className="font-bold">W</div>
+      <div className="font-bold">T</div>
+      <div className="font-bold">F</div>
+      <div className="font-bold">S</div>
+      <div className="font-bold">SU</div>
+    </div>
+
+    {/* Calendar days */}
+    <div className="calendar-grid grid grid-cols-7 mt-4">{renderCalendar()}</div>
+  </section>
 
       {/* Modal */}
       {isModalVisible && (
