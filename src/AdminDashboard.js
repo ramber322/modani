@@ -105,24 +105,21 @@ function AdminDashboard() {
               <p><strong>Location:</strong> {selectedEvent.location}</p>
               <p><strong>Description:</strong> {selectedEvent.description}</p>
 
-              <button
-                onClick={() => handleRegister(selectedEvent.id)}
-                className="mt-2 bg-blue-500 text-white py-1 px-2 rounded"
-              >
-                Delete
-              </button>
-              <button
-                onClick={closeModal}
-                className="mt-2 ml-2 bg-red-500 text-white py-1 px-2 rounded"
-              >
-                Close
-              </button>
+             
+              <div className="flex justify-end">
+  <button
+    onClick={closeModal}
+    className="mt-2 bg-red-500 text-white py-1 px-2 rounded"
+  >
+    Close
+  </button>
+</div>
             </div>
           </div>
         )}
 
         {/* Upcoming Events Section */}
-        <section className="bg-blue-500 text-white rounded-lg p-6 mt-6">
+        <section className="bg-yellow-500 text-white rounded-lg p-6 mt-6">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-semibold">UPCOMING EVENTS</h3>
@@ -140,15 +137,15 @@ function AdminDashboard() {
                   const formattedDate = eventDate.toLocaleDateString('en-US', options).toUpperCase();
 
                   return (
-                    <div key={event.id} className="flex items-center justify-between mt-2 bg-white text-blue-500 rounded-lg p-3">
-                      <span className="bg-blue-500 text-white rounded-full px-3 py-1 font-semibold text-lg">{event.id}</span>
+                    <div key={event.id} className="flex items-center justify-between mt-2 bg-white text-black rounded-lg p-3">
+
                       <span className="flex-1 ml-3 font-semibold">{event.title}</span>
                       <a
                         
                         className="text-blue-400 text-sm"
                         onClick={() => openModal(event)}  // Open the modal with event details
                       >
-                        Quick View
+                        Details
                       </a>
                     </div>
                   );
