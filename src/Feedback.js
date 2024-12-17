@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
+
 const Feedback = () => {
   // States for events, selected event, feedback list, current page, filter options, etc.
   const [events, setEvents] = useState([]);
@@ -14,6 +16,8 @@ const Feedback = () => {
   const mytoken = localStorage.getItem("token");
 
   const itemsPerPage = 5; // Number of events per page
+
+  const navigate = useNavigate(); // Get navigate function from useNavigate
 
   // Fetch events for pagination
   const loadEvents = async (page = 1) => {
@@ -127,12 +131,26 @@ const Feedback = () => {
     return uniqueYears;
   };
 
+  const handleBackToDashboard = () => {
+    navigate('/admindashboard'); // Redirect to dashboard
+  };
+
   return (
     <div>
     <Header props = "admin" />
     <main className="container mx-auto mt-8 px-4">
       {/* Page Title */}
       <h1 className="text-3xl font-bold text-gray-900 mb-6">Event Feedback</h1>
+
+           {/* Button to go back to Dashboard */}
+           <div className="text-left mb-4">
+  <button 
+    onClick={handleBackToDashboard} 
+    className="bg-gray-700 text-white px-4 py-2 rounded-md"
+  >
+    Go to Dashboard
+  </button>
+</div>
 
       {/* Filter Section */}
       <section className="bg-white p-6 rounded-lg shadow-lg mb-6">
