@@ -125,7 +125,7 @@ function ViewCalendar() {
 
   return (
     <>
-    <Header/>
+    <Header props = "user" />
     <main className="container mx-auto mt-8 px-4 ">
     <section className="mt-8">
     <div className="flex items-center justify-between mb-4">
