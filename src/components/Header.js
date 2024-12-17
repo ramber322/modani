@@ -1,13 +1,40 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-const Header = () => {
+import { Link  } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+
+const Header = ( {props}  ) => {
   // State to manage dropdown visibility
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const navigate = useNavigate();
 
+  const handleLogout = async () => {
+  
+    const token = localStorage.getItem("token");
+
+    fetch("http://127.0.0.1:8000/api/logout", {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        localStorage.removeItem("token");
+        alert("Logged out successfully");
+        navigate("/")
+    })
+    .catch(error => console.error("Error:", error));
+};
   // Function to toggle dropdown visibility
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
   };
+
+
+ 
+
+
 
   return (
     <header className="bg-black text-white py-4 relative">
@@ -18,9 +45,23 @@ const Header = () => {
           alt="SPC Logo"
         />
         <nav className="space-x-4 ml-auto">
-          <Link to="/dashboard" className="text-white hover:underline">
-          View Calendar
-          </Link>
+         {/* Dynamically render the link based on the pageName prop */}
+         {props === "admin" && (
+          <>
+            <Link to="/addevent" className="text-white hover:underline">
+              Add Event
+            </Link>
+
+            <Link to="/feedback" className="text-white hover:underline">
+              Feedback
+            </Link>
+          </>
+          )}
+          {props === "user" && (
+            <Link to="/viewcalendar" className="text-white hover:underline">
+              View Calendar
+            </Link>
+          )}
         </nav>
         <div className="relative ml-4">
           <button
@@ -38,14 +79,18 @@ const Header = () => {
               id="dropdown"
               className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg z-10"
             >
-              <button
-                id="activityLogButton"
+               {props === "user" && (
+               <Link
+                to="/activitylog"  // Use Link to navigate to Activity Log
                 className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
                 Activity Log
-              </button>
+              </Link>
+
+              )}
               <button
                 id="logoutButton"
+                onClick={handleLogout}
                 className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
                 Logout
