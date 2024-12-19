@@ -11,7 +11,7 @@ function Login() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("/dashboard"); // Redirect to dashboard page in React
+      navigate("/dashboard"); 
     }
   }, [navigate]);
 
@@ -37,8 +37,16 @@ function Login() {
       })
       .then((data) => {
         if (data.success) {
-          localStorage.setItem("token", data.token); // Save token to localStorage
-          navigate("/dashboard"); // Redirect to Dashboard
+          // Store token and role in localStorage
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("role", data.role); 
+
+          // Redirect based on role
+          if (data.role === "admin") {
+            navigate("/admindashboard");  
+          } else {
+            navigate("/dashboard"); 
+          }
         } else {
           setErrorMessage("Login failed: " + data.message);
         }
@@ -49,6 +57,10 @@ function Login() {
           "Login failed: " + (error.message || "An unexpected error occurred.")
         );
       });
+  };
+
+  const handleRegisterRedirect = () => {
+    navigate("/register"); // Redirect to  register page
   };
 
   return (
@@ -89,6 +101,16 @@ function Login() {
             Login
           </button>
         </form>
+          {/* Register Button on the Right */}
+    <div className="text-right mt-2">
+      <button
+        onClick={handleRegisterRedirect}
+        className="text-sm text-blue-500 hover:underline"
+      >
+        Don't have an account? Register
+      </button>
+    </div>
+
         <p className="mt-4 text-center text-sm text-red-600">{errorMessage}</p>
       </div>
     </div>

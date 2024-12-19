@@ -21,19 +21,16 @@ const Header = ( {props}  ) => {
     .then(response => response.json())
     .then(data => {
         localStorage.removeItem("token");
+        localStorage.removeItem("role");
         alert("Logged out successfully");
         navigate("/")
     })
     .catch(error => console.error("Error:", error));
 };
-  // Function to toggle dropdown visibility
+  //  toggle dropdown visibility
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
   };
-
-
- 
-
 
 
   return (
@@ -45,7 +42,6 @@ const Header = ( {props}  ) => {
           alt="SPC Logo"
         />
         <nav className="space-x-4 ml-auto">
-         {/* Dynamically render the link based on the pageName prop */}
          {props === "admin" && (
           <>
             <Link to="/addevent" className="text-white hover:underline">
@@ -73,7 +69,8 @@ const Header = ( {props}  ) => {
               <span className="text-blue-600 font-bold">⚙️</span>
             </div>
           </button>
-          {/* Dropdown menu with logout button */}
+
+          {/* Dropdown menu  */}
           {isDropdownVisible && (
             <div
               id="dropdown"

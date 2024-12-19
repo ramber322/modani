@@ -38,13 +38,13 @@ function App() {
         element={ <ProtectedRoute> <ActivityLog/> </ProtectedRoute> }/>
 
         <Route path="/addevent" 
-        element={ <ProtectedRoute> <AddEvent/> </ProtectedRoute> }/>
+        element={ <ProtectedRoute requiredRole= "admin"> <AddEvent/> </ProtectedRoute> }/>
 
         <Route path="/feedback" 
-        element={ <ProtectedRoute> <Feedback/> </ProtectedRoute> }/>
+        element={ <ProtectedRoute requiredRole= "admin"> <Feedback/> </ProtectedRoute> }/>
 
         <Route path="/admindashboard" 
-        element={ <ProtectedRoute> <AdminDashboard/> </ProtectedRoute> }/>
+        element={ <ProtectedRoute requiredRole= "admin"> <AdminDashboard/> </ProtectedRoute> }/>
 
 
       </Routes>

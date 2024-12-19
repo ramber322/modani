@@ -6,7 +6,6 @@ function ActivityLog() {
   const [loading, setLoading] = useState(true);
   const [rating, setRating] = useState(null); // To store the selected rating
   const [comment, setComment] = useState(""); // To store the feedback comment
-  const [dropdownVisible, setDropdownVisible] = useState(false); // For dropdown visibility
 
   useEffect(() => {
     // Fetch registered events for the logged-in user

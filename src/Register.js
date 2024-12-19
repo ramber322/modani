@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function Register() {
-  // State for form fields
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // React Router's useNavigate to redirect after successful registration
+  const navigate = useNavigate();
+
+
  
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,6 +44,7 @@ function Register() {
       .then((data) => {
         if (data.success) {
           alert("Registration successful!");
+          navigate("/");
         } else {
           setErrorMessage("Registration failed: " + data.message);
         }
@@ -50,12 +55,12 @@ function Register() {
       });
   };
 
+
   return (
     <div className="bg-gray-200 flex items-center justify-center min-h-screen">
-      <div className="bg-white p-6 rounded-lg shadow-md w-80">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96">
         <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
         <form onSubmit={handleSubmit}>
-          {/* Name Field */}
           <div className="mb-4">
             <input
               type="text"
@@ -69,7 +74,6 @@ function Register() {
             />
           </div>
 
-          {/* Email Field */}
           <div className="mb-4">
             <input
               type="email"
@@ -83,7 +87,6 @@ function Register() {
             />
           </div>
 
-          {/* Password Field */}
           <div className="mb-4">
             <input
               type="password"
@@ -97,7 +100,6 @@ function Register() {
             />
           </div>
 
-          {/* Confirm Password Field */}
           <div className="mb-4">
             <input
               type="password"
@@ -111,16 +113,22 @@ function Register() {
             />
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600"
           >
-            Register
+            Sign Up
           </button>
         </form>
-
-        {/* Error Message */}
+ 
+  <div className="text-center mt-4">
+        <button
+          onClick={() => navigate("/")} 
+          className="text-sm text-blue-500 hover:underline"
+        >
+          Already have an account? Login
+        </button>
+      </div>
         <p className="mt-4 text-center text-sm text-red-600">{errorMessage}</p>
       </div>
     </div>
