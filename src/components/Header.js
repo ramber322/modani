@@ -77,6 +77,7 @@ const Header = ( {props}  ) => {
               className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg z-10"
             >
                {props === "user" && (
+                <>
                <Link
                 to="/activitylog"  // Use Link to navigate to Activity Log
                 className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200"
@@ -84,6 +85,13 @@ const Header = ( {props}  ) => {
                 Activity Log
               </Link>
 
+              <Link
+                to="/profile"  
+                className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200"
+              >
+                Profile
+              </Link>
+              </>
               )}
               <button
                 id="logoutButton"

@@ -7,6 +7,7 @@ import Register from "./Register";
 import ViewCalendar from "./ViewCalendar";
 import Dashboard from "./Dashboard";
 import ActivityLog from "./ActivityLog";
+import Profile from "./Profile";
 
 //ADMIN
 import AddEvent from "./ADMIN/AddEvent";
@@ -30,6 +31,9 @@ function App() {
         {/* Protected routes */}
         <Route path="/dashboard"
         element={ <ProtectedRoute> <Dashboard/> </ProtectedRoute> }/>
+
+        <Route path="/profile"
+        element={ <ProtectedRoute> <Profile/> </ProtectedRoute> }/>
 
         <Route path="/viewcalendar"
         element={ <ProtectedRoute> <ViewCalendar/> </ProtectedRoute> }/>
