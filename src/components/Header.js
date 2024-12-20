@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link  } from "react-router-dom";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import spcLogo from '../images/spc-logo-header.png';
 
 const Header = ( {props}  ) => {
   // State to manage dropdown visibility
@@ -38,7 +39,7 @@ const Header = ( {props}  ) => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <img
           style={{ width: '40px', height: '40px' }}
-          src="https://www.spc.edu.ph/wp-content/uploads/2023/05/spc-logo-footer-1.png"
+          src={spcLogo}
           alt="SPC Logo"
         />
         <nav className="space-x-4 ml-auto">

@@ -4,10 +4,10 @@ import Login from "./Login";
 import Register from "./Register";
 
 //USER
-import ViewCalendar from "./ViewCalendar";
-import Dashboard from "./Dashboard";
-import ActivityLog from "./ActivityLog";
-import Profile from "./Profile";
+import ViewCalendar from "./USER/ViewCalendar";
+import Dashboard from "./USER/Dashboard";
+import ActivityLog from "./USER/ActivityLog";
+import Profile from "./USER/Profile";
 
 //ADMIN
 import AddEvent from "./ADMIN/AddEvent";
@@ -16,6 +16,7 @@ import AdminDashboard from "./ADMIN/AdminDashboard";
 
 
 import ProtectedRoute from "./ProtectedRoute";
+import Documentation from "./Documentation";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
         {/* Public routes */}
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
+        <Route path="/documentation" element={<Documentation />} />
 
 
         {/* Protected routes */}

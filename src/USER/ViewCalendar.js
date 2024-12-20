@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Header from "./components/Header"
+import { useNavigate } from 'react-router-dom';
+import arrowIcon from "../images/arrow-icon.png"
+import Header from "../components/Header"
 function ViewCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [events, setEvents] = useState([]);
   const [selectedDayEvents, setSelectedDayEvents] = useState([]);
   const [isModalVisible, setModalVisible] = useState(false);
-
+  
+  
+    const navigate = useNavigate();
   const token = localStorage.getItem('token'); 
 
   
@@ -48,7 +52,7 @@ function ViewCalendar() {
   useEffect(() => {
     async function fetchEvents() {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/events/fetchEvents', {
+        const response = await fetch('http://127.0.0.1:8000/api/events/calendarEvents', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -123,10 +127,25 @@ function ViewCalendar() {
     setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
   };
 
+  
+  const handleBackToDashboard = () => {
+    navigate('/dashboard');
+  };
   return (
     <>
     <Header props = "user" />
     <main className="container mx-auto mt-8 px-4 ">
+    <button 
+  onClick={handleBackToDashboard}
+  className="bg-gray-700 text-white px-4 py-2 rounded-md flex items-center" // Added flex and items-center
+>
+  <img
+    style={{ width: '24px', height: '22px', marginRight: '6px', transform: 'scaleX(-1)', color: 'white' }} // Adjusted size and added margin
+    src={arrowIcon}
+    alt="arrow"
+  />
+  Dashboard
+</button>
     <section className="mt-8">
     <div className="flex items-center justify-between mb-4">
       <button onClick={handlePrevMonth} className="text-xl p-2 bg-gray-200 rounded hover:bg-gray-300">

@@ -59,7 +59,7 @@ function AdminDashboard() {
               <p><strong>Time:</strong> {selectedEvent.event_time}</p>
               <p><strong>Location:</strong> {selectedEvent.location}</p>
               <p><strong>Description:</strong> {selectedEvent.description}</p>
-
+              <p><strong>Date:</strong> {selectedEvent.event_date}</p>
              
               <div className="flex justify-end">
   <button

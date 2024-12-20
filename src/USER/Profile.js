@@ -1,14 +1,19 @@
-// Profile.js
-
 import React, { useState, useEffect } from "react";
-import Header from "./components/Header";
-import ProfileModal from "./components/ProfileModal"; // Import the ProfileModal
+import { useNavigate } from 'react-router-dom';
+import arrowIcon from "../images/arrow-icon.png"
+import Header from "../components/Header";
+import ProfileModal from "../components/ProfileModal"; // Import the ProfileModal
 
 function Profile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const navigate = useNavigate();
+  const handleBackToDashboard = () => {
+    navigate('/dashboard');
+  };
 
   // Fetch user information
   useEffect(() => {
@@ -95,6 +100,17 @@ function Profile() {
     <div>
       <Header props="user" />
       <main className="container mx-auto mt-8 px-4">
+      <button 
+  onClick={handleBackToDashboard}
+  className="bg-gray-700 text-white px-4 py-2 rounded-md flex items-center" // Added flex and items-center
+>
+  <img
+    style={{ width: '24px', height: '22px', marginRight: '6px', transform: 'scaleX(-1)', color: 'white' }} // Adjusted size and added margin
+    src={arrowIcon}
+    alt="arrow"
+  />
+  Dashboard
+</button>
         <h1 className="text-2xl font-semibold">Account Information</h1>
         
         {errorMessage && (
